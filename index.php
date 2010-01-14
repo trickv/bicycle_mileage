@@ -24,9 +24,10 @@ foreach ($bicycles as $bicycleId => $bicycleName) {
 $template->total_mileage = $totalMileage;
 $template->bicycles = $bicycleOdometers;
 $template->goal = $goal;
-$template->done_per_week = round($totalMileage / date('W'), 1);
-$template->week_number = intval(date('W'));
-$template->to_go_per_week = round(($goal - $totalMileage) / (52 - date('W')), 1);
+$template->reach_goal_miles_per_day = round($goal / 365, 2);
+$template->done_per_day = round($totalMileage / date('z'), 2);
+$template->day_number = intval(date('z'));
+$template->to_go_per_day = round(($goal - $totalMileage) / (365 - date('z')), 2);
 $template->to_go = $goal - $totalMileage;
 
 ob_start(null, 1000000);
