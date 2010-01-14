@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Bicycle Mileage Statistics</title>
+</head>
+<body>
+<h1>Bicycle Milleage Statistics</h1>
+<h3 tal:content="now">2009-08-06 4AM</h3>
+
+<h2>Total Mileage: <tal:block tal:content="total_mileage">47322.9 miles</tal:block></h2>
+
+<h4><tal:block tal:content="to_go">2</tal:block> miles to go at <tal:block tal:content="to_go_per_week">4</tal:block> miles per week.</h4>
+<h4>At an average of <tal:block tal:content="done_per_week">3</tal:block> miles per week in week <tal:block tal:content="week_number">9</tal:block>.</h4>
+
+<table border='1'>
+    <tr>
+        <th>Bicycle</th>
+        <th>Odometer</th>
+        <th>Updated</th>
+    </tr>
+    <tr tal:repeat="bicycle bicycles">
+        <th tal:content="bicycle/name">Specialized Roubaix</th>
+        <td tal:content="bicycle/odometer">47,322.9</td>
+        <td tal:content="bicycle/last_update">2007-04-32 3AM</td>
+    </tr>
+</table>
+
+<h2><a href='log/'>Log Mileage</a></h2>
+
+<tal:block tal:content="structure debug"/>
+
+</body>
+</html>

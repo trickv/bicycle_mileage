@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Log bicycle mileage</title>
+</head>
+<body>
+
+<h1>Log bicycle mileage</h1>
+<form tal:attributes="action action" method="GET">
+    <fieldset>
+        <select name='bicycle_id'>
+            <option tal:repeat="bicycle bicycles" tal:attributes="value repeat/bicycle/key" tal:content="bicycle">A bicycle</option>
+        </select>
+        <input type='text' name='odometer'/>
+        <input type='submit' name='submit' value='Log It!'/>
+    </fieldset>
+</form>
+
+<p><a href='../'>Statistics</a></p>
+
+</body>
+</html>
