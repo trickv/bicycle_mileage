@@ -2,6 +2,7 @@
 
 require_once "../common.php";
 require_once 'FusionChartsFree/Code/PHPClass/Includes/FusionCharts_Gen.php';
+require_once 'smarty/Smarty.class.php';
 
 $bicycleId = intval($_REQUEST['bicycle_id']);
 
@@ -32,4 +33,9 @@ $chart = new FusionCharts('Line', 1100, 300);
 $chart->addChartDataFromArray($chartData);
 $chartHtml = $chart->renderChart(null, false);
 
-echo "<html><head><script language='javascript' src='FusionCharts.js'></script></head><body><p><a href='..'>Go Back</a></p><h1>{$title}</h1>{$chartHtml}</body></html>";
+$template = new Smarty();
+$template->compile_dir = '/tmp/';
+$template->template_dir = realpath(dirname(__FILE__));
+$template->assign('title', $title);
+$template->assign('chartHtml', $chartHtml);
+$template->display('template.tpl');
