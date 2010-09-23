@@ -17,7 +17,12 @@ foreach ($bicycles as $bicycleId => $bicycleName) {
     if (!$statement->execute(array($bicycleId)))
         throw new Exception("Failed query: " . print_r($db->errorInfo(), true));
     $row = $statement->fetch();
-    $bicycleOdometers[$bicycleId] = array('name' => $bicycleName, 'odometer' => $row['max_odometer'], 'last_update' => $row['max_datetime']);
+    $bicycleOdometers[$bicycleId] = array(
+        'name' => $bicycleName,
+        'odometer' => $row['max_odometer'],
+        'last_update' => $row['max_datetime'],
+        'href' => 'individual/?bicycle_id=' . $bicycleId,
+        );
     $totalMileage += $row[0];
 }
 
