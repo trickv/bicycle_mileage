@@ -7,9 +7,11 @@
 <h3 tal:content="now">2009-08-06 4AM</h3>
 
 <h2>Total Mileage: <tal:block tal:content="total_mileage">47322.9 miles</tal:block></h2>
-<h4>At a goal of <tal:block tal:content="goal">1000</tal:block> miles need to ride <tal:block tal:content="reach_goal_miles_per_day">4</tal:block> miles a day.</h4>
-<h4><tal:block tal:content="to_go">2</tal:block> miles to go at <tal:block tal:content="to_go_per_day">4</tal:block> miles per day.</h4>
-<h4>At an average of <tal:block tal:content="done_per_day">3</tal:block> miles per day on day <tal:block tal:content="day_number">9</tal:block>.</h4>
+<p>
+    <strong>Goal: </strong><tal:block tal:content="goal">1000</tal:block> miles, need to ride <tal:block tal:content="reach_goal_miles_per_day">4</tal:block> miles a day.<br/>
+    <strong>Remaining: </strong><tal:block tal:content="to_go">2</tal:block> miles to go at <tal:block tal:content="to_go_per_day">4</tal:block> miles per day.<br/>
+    <strong>Actual: </strong> Average of <tal:block tal:content="done_per_day">3</tal:block> miles per day on day <tal:block tal:content="day_number">9</tal:block>.<br/>
+</p>
 
 <table border='1'>
     <tr>
