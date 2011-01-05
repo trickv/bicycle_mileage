@@ -1,7 +1,6 @@
 <?php
 
 require_once "../common.php";
-require_once 'FusionChartsFree/Code/PHPClass/Includes/FusionCharts_Gen.php';
 require_once 'smarty/Smarty.class.php';
 
 $bicycleId = intval($_REQUEST['bicycle_id']);
@@ -13,33 +12,19 @@ if (empty($bicycleId)) {
 $statement = $db->query("SELECT * FROM lk_bicycle WHERE bicycle_id = {$bicycleId}");
 $bicycle = $statement->fetch();
 
-if (empty($bicycle)) {
-    throw new Exception("empty bicycle object");
-}
-
-$title = $bicycle['name'];
-
 $statement = $db->query("SELECT datetime, odometer FROM odometer_log WHERE bicycle_id = {$bicycleId} ORDER BY datetime ASC");
 
-$index = 0;
 $graphData = array();
 foreach ($statement->fetchAll() as $row) {
     $date = strtotime($row['datetime']);
-    $chartData[$index][0] = $date;
-    $chartData[$index][1] = $row['odometer'];
-    $index++;
     $graphData[] = array(date('r', $date), intval($row['odometer']));
 }
 $graphJson = json_encode($graphData);
 
-$chart = new FusionCharts('Line', 1100, 300);
-$chart->addChartDataFromArray($chartData);
-$chartHtml = $chart->renderChart(null, false);
-
 $template = new Smarty();
 $template->compile_dir = '/tmp/';
+$template->compile_id = md5(dirname(__FILE__));
 $template->template_dir = realpath(dirname(__FILE__));
-$template->assign('title', $title);
-#$template->assign('chartHtml', $chartHtml);
+$template->assign('title', $bicycle['name']);
 $template->assign('graphJson', $graphJson);
 $template->display('template.tpl');
