@@ -1,6 +1,6 @@
 <?php
 
-$goal = 4500;
+$goal = 2000;
 
 require_once "PHPTAL.php";
 require_once "common.php";
