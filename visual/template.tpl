@@ -29,24 +29,41 @@
             chart.draw(data, {
                 lineWidth: 1,
             });
+            
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'Date/Time');
+            data.addColumn('number', 'Miles per day since last checkin');
+            var raw_data = {/literal}{$milesPerDaySinceLast}{literal};
+            for (i = 0; i < raw_data.length; i++) {
+                data.addRow([new Date(raw_data[i][0]), raw_data[i][1]]);
+            }
+            var chart = new google.visualization.ScatterChart(document.getElementById('milesPerDaySinceLast'));
+            chart.draw(data, {
+                lineWidth: 1,
+            });
         }
         {/literal}
     </script>
     <style>
         {literal}
         .visualization {
-            width: 100%;
-            height: 75%;
+            width: 50%;
+            height: 350px;
+            float: left;
+        }
+        p {
+            clear: both;
         }
         {/literal}
     </style>
 </head>
 <body>
 
-<p><a href='..'>Go Back</a></p>
-<h1>{$title}</h1>
 <div id='milesPerPoint' class='visualization'>coming soon</div>
 <div id='milesPerDay' class='visualization'>coming soon</div>
+<div id='milesPerDaySinceLast' class='visualization'>coming soon</div>
+
+<p><a href='..'>Go Back</a></p>
 
 </body>
 </html>
