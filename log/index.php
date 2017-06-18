@@ -14,6 +14,7 @@ if (isset($_REQUEST['bicycle_id'])) {
     $statement = $db->prepare("INSERT INTO odometer_log (bicycle_id, odometer) VALUES(?, ?)");
     $statement->execute(array($bicycleId, $odometer));
     header("Content-type: text/plain");
+    header("Refresh: 2; url=../");
     echo "OK\n";
     exit;
 }
