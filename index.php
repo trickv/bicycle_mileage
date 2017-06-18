@@ -1,6 +1,6 @@
 <?php
 
-$goal = 750;
+$goal = 500;
 
 require_once "PHPTAL.php";
 require_once "common.php";
@@ -33,6 +33,7 @@ $template->reach_goal_miles_per_day = round($goal / 365, 2);
 $template->done_per_day = round($totalMileage / date('z'), 2);
 $template->day_number = intval(date('z'));
 $template->to_go_per_day = round(($goal - $totalMileage) / (365 - date('z')), 2);
+$template->to_go_per_week = round(($goal - $totalMileage) / (365 - date('z')), 2) * 7;
 $template->to_go = $goal - $totalMileage;
 
 ob_start(null, 1000000);
