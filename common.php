@@ -4,7 +4,8 @@ $dbname = "bicycle_mileage";
 if (isset($_REQUEST['year'])) {
     $dbname = "{$dbname}_" . intval($_REQUEST['year']);
 }
-$db = new PDO("pgsql:host=localhost dbname={$dbname} user=trick password=trick");
+require_once("config.php");
+$db = new PDO("{$pdobackend}:host={$dbhost} dbname={$dbname} user={$dbuser} password={$dbpass}");
 
 $bicycles = array();
 
