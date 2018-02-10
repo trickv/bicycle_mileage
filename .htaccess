@@ -1,0 +1,2 @@
+php_value auto_prepend_file /home/trick/phplib/_lib/auto-prepend.php
+php_value auto_append_file /home/trick/phplib/_lib/auto-append.php

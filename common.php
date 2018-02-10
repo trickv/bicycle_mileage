@@ -4,8 +4,7 @@ $dbname = "bicycle_mileage";
 if (isset($_REQUEST['year'])) {
     $dbname = "{$dbname}_" . intval($_REQUEST['year']);
 }
-require_once("config.php");
-$db = new PDO("{$pdobackend}:host={$dbhost} dbname={$dbname} user={$dbuser} password={$dbpass}");
+$db = new PDO("sqlite:/home/trick/public_html/bicycle_mileage/db/${dbname}.sqlite3");
 
 $bicycles = array();
 

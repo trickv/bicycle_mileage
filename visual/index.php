@@ -1,7 +1,7 @@
 <?php
 
 require_once "../common.php";
-require_once 'smarty/Smarty.class.php';
+require_once 'smarty3/Smarty.class.php';
 
 $statement = $db->query("SELECT bicycle_id, datetime, odometer FROM odometer_log ORDER BY datetime ASC");
 

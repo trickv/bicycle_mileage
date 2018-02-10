@@ -1,6 +1,0 @@
-<?php
-
-$pdobackend = "pgsql";
-$dbhost = "localhost";
-$dbuser = "user";
-$dbpass = "password";
