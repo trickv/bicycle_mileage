@@ -1,0 +1,150 @@
+--
+-- PostgreSQL database dump
+--
+
+SET client_encoding = 'SQL_ASCII';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: lk_bicycle_sequence; Type: SEQUENCE; Schema: public; Owner: trick
+--
+
+CREATE SEQUENCE lk_bicycle_sequence
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lk_bicycle_sequence OWNER TO trick;
+
+--
+-- Name: lk_bicycle_sequence; Type: SEQUENCE SET; Schema: public; Owner: trick
+--
+
+SELECT pg_catalog.setval('lk_bicycle_sequence', 5, true);
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: lk_bicycle; Type: TABLE; Schema: public; Owner: trick; Tablespace: 
+--
+
+CREATE TABLE lk_bicycle (
+    bicycle_id integer DEFAULT nextval('lk_bicycle_sequence'::regclass) NOT NULL,
+    name text NOT NULL,
+    "position" integer
+);
+
+
+ALTER TABLE public.lk_bicycle OWNER TO trick;
+
+--
+-- Name: lk_quarter; Type: TABLE; Schema: public; Owner: trick; Tablespace: 
+--
+
+CREATE TABLE lk_quarter (
+    description text NOT NULL,
+    end_time timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.lk_quarter OWNER TO trick;
+
+--
+-- Name: odometer_log; Type: TABLE; Schema: public; Owner: trick; Tablespace: 
+--
+
+CREATE TABLE odometer_log (
+    bicycle_id integer NOT NULL,
+    datetime timestamp without time zone DEFAULT now() NOT NULL,
+    odometer double precision NOT NULL
+);
+
+
+ALTER TABLE public.odometer_log OWNER TO trick;
+
+--
+-- Data for Name: lk_bicycle; Type: TABLE DATA; Schema: public; Owner: trick
+--
+
+INSERT INTO lk_bicycle VALUES (1, 'Fuji', 1);
+INSERT INTO lk_bicycle VALUES (3, 'Bianchi', 3);
+INSERT INTO lk_bicycle VALUES (2, 'Orange Nasty', 2);
+INSERT INTO lk_bicycle VALUES (5, 'Other', 5);
+INSERT INTO lk_bicycle VALUES (4, 'Amsterdam rental', 4);
+
+
+--
+-- Data for Name: lk_quarter; Type: TABLE DATA; Schema: public; Owner: trick
+--
+
+INSERT INTO lk_quarter VALUES ('2009 Q3', '2009-10-02 13:50:11.168314');
+
+
+--
+-- Data for Name: odometer_log; Type: TABLE DATA; Schema: public; Owner: trick
+--
+
+INSERT INTO odometer_log VALUES (2, '2009-08-07 01:02:57.719611', 320.10000000000002);
+INSERT INTO odometer_log VALUES (2, '2009-08-07 01:15:15.270317', 321.80000000000001);
+INSERT INTO odometer_log VALUES (1, '2009-08-07 01:24:08.415025', 599.89999999999998);
+INSERT INTO odometer_log VALUES (3, '2009-08-07 01:24:21.962726', 396.39999999999998);
+INSERT INTO odometer_log VALUES (2, '2009-08-10 05:36:44.885212', 324.19999999999999);
+INSERT INTO odometer_log VALUES (2, '2009-08-10 13:38:11.752019', 328.10000000000002);
+INSERT INTO odometer_log VALUES (3, '2009-08-12 02:32:17.836421', 402.80000000000001);
+INSERT INTO odometer_log VALUES (2, '2009-08-12 02:32:39.488876', 339.19999999999999);
+INSERT INTO odometer_log VALUES (2, '2009-08-14 04:06:16.066993', 359.19999999999999);
+INSERT INTO odometer_log VALUES (3, '2009-08-14 04:07:01.495128', 402.80000000000001);
+INSERT INTO odometer_log VALUES (2, '2009-08-15 11:26:03.721935', 370.80000000000001);
+INSERT INTO odometer_log VALUES (2, '2009-09-11 13:17:17.540017', 386);
+INSERT INTO odometer_log VALUES (2, '2009-09-15 02:24:59.774242', 428.10000000000002);
+INSERT INTO odometer_log VALUES (1, '2009-09-15 02:25:16.040176', 601.29999999999995);
+INSERT INTO odometer_log VALUES (3, '2009-09-15 02:25:34.691298', 423.19999999999999);
+INSERT INTO odometer_log VALUES (1, '2009-09-18 13:58:09.966022', 627.60000000000002);
+INSERT INTO odometer_log VALUES (4, '2009-09-18 15:50:41.421618', 186.5);
+INSERT INTO odometer_log VALUES (5, '2009-09-18 15:52:13.326044', 16);
+INSERT INTO odometer_log VALUES (1, '2009-09-24 05:45:36.629747', 646.70000000000005);
+INSERT INTO odometer_log VALUES (1, '2009-09-25 13:18:16.825526', 653.60000000000002);
+INSERT INTO odometer_log VALUES (3, '2009-10-02 12:57:59.805638', 438);
+INSERT INTO odometer_log VALUES (1, '2009-10-02 12:58:35.515226', 685.20000000000005);
+INSERT INTO odometer_log VALUES (1, '2009-10-02 13:50:42.132347', 688);
+INSERT INTO odometer_log VALUES (3, '2009-10-05 00:17:45.379919', 461.10000000000002);
+INSERT INTO odometer_log VALUES (1, '2009-10-05 00:18:40.438642', 701.29999999999995);
+INSERT INTO odometer_log VALUES (1, '2009-10-21 13:12:53.770989', 790.10000000000002);
+INSERT INTO odometer_log VALUES (3, '2009-10-21 13:13:17.911947', 490.69999999999999);
+INSERT INTO odometer_log VALUES (1, '2009-11-03 14:30:55.666221', 869);
+INSERT INTO odometer_log VALUES (1, '2009-12-18 14:04:44.519076', 967);
+INSERT INTO odometer_log VALUES (3, '2009-12-18 14:05:19.300538', 517.79999999999995);
+
+
+--
+-- Name: lk_bicycle_pkey; Type: CONSTRAINT; Schema: public; Owner: trick; Tablespace: 
+--
+
+ALTER TABLE ONLY lk_bicycle
+    ADD CONSTRAINT lk_bicycle_pkey PRIMARY KEY (bicycle_id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
