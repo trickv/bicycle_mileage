@@ -5,6 +5,7 @@ if (isset($_REQUEST['year'])) {
     $dbname = "{$dbname}_" . intval($_REQUEST['year']);
 }
 $db = new PDO("sqlite:/home/trick/public_html/bicycle_mileage/db/${dbname}.sqlite3");
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $bicycles = array();
 
