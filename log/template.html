@@ -9,7 +9,7 @@
 <form tal:attributes="action action" method="GET">
     <fieldset>
         <select name='bicycle_id'>
-            <option tal:repeat="bicycle bicycles" tal:attributes="value repeat/bicycle/key" tal:content="bicycle">A bicycle</option>
+            <option tal:repeat="bicycle bicycles" tal:attributes="value repeat/bicycle/key" tal:content="bicycle/name">A bicycle</option>
         </select>
         <input type='text' name='odometer'/>
         <input type='submit' name='submit' value='Log It!'/>

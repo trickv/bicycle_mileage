@@ -13,17 +13,24 @@ $statement = $db->prepare("SELECT MAX(odometer) AS max_odometer, MAX(datetime) A
 $bicycleOdometers = array();
 $totalMileage = 0;
 
-foreach ($bicycles as $bicycleId => $bicycleName) {
+foreach ($bicycles as $bicycleId => $bicycleData) {
+    $bicycleUnit = $bicycleData['unit_id'];
     if (!$statement->execute(array($bicycleId)))
         throw new Exception("Failed query: " . print_r($db->errorInfo(), true));
     $row = $statement->fetch();
     $bicycleOdometers[$bicycleId] = array(
-        'name' => $bicycleName,
+        'name' => $bicycleData['name'],
+        'unit' => $bicycleData['unit'],
         'odometer' => $row['max_odometer'],
         'last_update' => $row['max_datetime'],
         'href' => 'individual/?bicycle_id=' . $bicycleId,
         );
-    $totalMileage += $row[0];
+    if ($bicycleUnit == 'm') {
+        $odometerMileage = $row[0] / 1609.34;
+    } else {
+        $odometerMileage = $row[0];
+    }
+    $totalMileage += $odometerMileage;
 }
 
 $template->total_mileage = $totalMileage;

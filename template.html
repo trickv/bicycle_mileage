@@ -19,11 +19,13 @@
     <tr>
         <th>Bicycle</th>
         <th>Odometer</th>
+        <th>Unit</th>
         <th>Updated</th>
     </tr>
     <tr tal:repeat="bicycle bicycles">
         <th><a tal:attributes="href bicycle/href"><tal:block tal:content="bicycle/name">Specialized Roubaix</tal:block></a></th>
         <td tal:content="bicycle/odometer">47,322.9</td>
+        <td tal:content="bicycle/unit">feet</td>
         <td tal:content="bicycle/last_update">2007-04-32 3AM</td>
     </tr>
 </table>
